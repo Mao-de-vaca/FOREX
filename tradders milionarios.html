@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Preditor Forex - Site Profissional</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #1f1f1f;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    h1 {
+      color: #1a237e;
+      text-align: center;
+    }
+    .robot-container {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .robot {
+      width: 200px;
+      height: 200px;
+      background-color: #e0e0e0;
+      position: relative;
+      animation: robot-animation 2s linear infinite;
+    }
+    @keyframes robot-animation {
+      0% { transform: rotate(0); }
+      100% { transform: rotate(360deg); }
+    }
+    .prediction {
+      text-align: center;
+      font-size: 24px;
+      color: #1a237e;
+    }
+    .buy {
+      color: green;
+    }
+    .sell {
+      color: red;
+    }
+    .trades-container {
+      text-align: center;
+    }
+    .trade {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .buy-trade {
+      background-color: #c8e6c9;
+      color: green;
+    }
+    .sell-trade {
+      background-color: #ffcdd2;
+      color: red;
+    }
+    .form-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .form-container label {
+      display: block;
+      margin-bottom: 10px;
+      color: #1a237e;
+      font-weight: bold;
+    }
+    .form-container select {
+      width: 200px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .form-container button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #1a237e;
+      color: #fff;
+      font-size: 18px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+  <script>
+    function generatePrediction() {
+      // Lógica de previsão usando Python (pode ser implementada com uma API ou biblioteca Python como TensorFlow)
+      // Aqui, vamos apenas gerar uma previsão aleatória para fins de demonstração
+      const isBuy = Math.random() < 0.5;
+
+      const predictionElement = document.getElementById('prediction');
+      const robotElement = document.querySelector('.robot');
+      const buyTradeElement = document.getElementById('buy-trade');
+      const sellTradeElement = document.getElementById('sell-trade');
+
+      robotElement.classList.remove('buy', 'sell');
+      buyTradeElement.style.display = 'none';
+      sellTradeElement.style.display = 'none';
+
+      if (isBuy) {
+        predictionElement.textContent = 'Buy';
+        robotElement.classList.add('buy');
+        buyTradeElement.style.display = 'block';
+      } else {
+        predictionElement.textContent = 'Sell';
+        robotElement.classList.add('sell');
+        sellTradeElement.style.display = 'block';
+      }
+
+      // Exemplo de código para adicionar temporizador de 3 segundos antes de exibir a previsão
+      setTimeout(showPrediction, 3000);
+    }
+
+    function showPrediction() {
+      const predictionElement = document.getElementById('prediction');
+      const robotElement = document.querySelector('.robot');
+
+      predictionElement.style.display = 'block';
+      robotElement.style.display = 'none';
+    }
+
+    function predict() {
+      const predictionElement = document.getElementById('prediction');
+      const robotElement = document.querySelector('.robot');
+      const buyTradeElement = document.getElementById('buy-trade');
+      const sellTradeElement = document.getElementById('sell-trade');
+
+      predictionElement.style.display = 'none';
+      robotElement.style.display = 'block';
+      buyTradeElement.style.display = 'none';
+      sellTradeElement.style.display = 'none';
+
+      // Exemplo de código para mostrar um alerta e redirecionar para o WhatsApp
+      alert('Você não está qualificado para usar este recurso. Entre em contato conosco pelo WhatsApp para mais informações.');
+      window.location.href = 'https://wa.me/+258874601002';
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Preditor Forex</h1>
+    <div class="robot-container">
+      <div class="robot"></div>
+    </div>
+    <div class="prediction" id="prediction" style="display: none;"></div>
+    <div class="trades-container">
+      <div class="trade buy-trade" id="buy-trade" style="display: none;">Compra</div>
+      <div class="trade sell-trade" id="sell-trade" style="display: none;">Venda</div>
+    </div>
+    <div class="form-container">
+      <label for="timeframe">Tempo:</label>
+      <select id="timeframe">
+        <option value="5">5 Minutos</option>
+        <option value="60">1 Hora</option>
+        <option value="1440">1 Dia</option>
+      </select>
+      <button onclick="predict()">Entrar</button>
+    </div>
+  </div>
+</body>
+</html>
